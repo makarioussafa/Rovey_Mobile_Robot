@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="toy_collector">
+
+  <!-- ================= ARGS (like yahboom style) ================= -->
+  <xacro:arg name="robot_name" default="toy_collector"/>
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="use_gazebo" default="true"/>
+
+  <!-- Sensors args -->
+  <xacro:arg name="imu_topic" default="/imu"/>
+  <xacro:arg name="tof_topic" default="/tof_scan"/>
+  <xacro:arg name="ir_left_topic" default="/ir_left_scan"/>
+  <xacro:arg name="ir_right_topic" default="/ir_right_scan"/>
+
+  <xacro:arg name="imu_rate" default="100"/>
+  <xacro:arg name="tof_rate" default="30"/>
+  <xacro:arg name="ir_rate" default="20"/>
+
+  <!-- ================= MECHANICAL PARTS ================= -->
+  <xacro:include filename="$(find toys_collector_description)/urdf/mech/base.urdf.xacro"/>
+  <xacro:include filename="$(find toys_collector_description)/urdf/mech/wheels_diff.urdf.xacro"/>
+  <xacro:include filename="$(find toys_collector_description)/urdf/mech/mechanism.urdf.xacro"/>
+
+  <!-- ================= SENSORS ================= -->
+  <xacro:include filename="$(find toys_collector_description)/urdf/sensors/imu.urdf.xacro"/>
+  <xacro:include filename="$(find toys_collector_description)/urdf/sensors/tof_sensor.urdf.xacro"/>
+  <xacro:include filename="$(find toys_collector_description)/urdf/sensors/ir_sensor.urdf.xacro"/>
+
+  <!-- ================= CONTROL ================= -->
+  <xacro:include filename="$(find toys_collector_description)/urdf/control/toys_collector_ros2_control.urdf.xacro"/>
+  <xacro:include filename="$(find toys_collector_description)/urdf/control/toys_collector_gz_ros2_control_plugin.urdf.xacro"/>
+
+  <!-- ================= BUILD ROBOT ================= -->
+  <xacro:base/>
+  <xacro:wheels_diff/>
+  <xacro:mechanism/>
+
+  <!-- ================= ADD SENSORS ================= -->
+
+  <!-- IMU -->
+  <xacro:imu_sensor
+    parent="base_link"
+    frame_id="imu_link"
+    xyz="0 -.06 0.12"
+    rpy="0 0 0"
+    topic="$(arg imu_topic)"
+    update_rate="$(arg imu_rate)"/>
+
+  <!-- TOF -->
+  <xacro:tof_sensor
+    parent="base_link"
+    frame_id="tof_link"
+    xyz="0.16 -0.1 0.14"
+    rpy="0 0 0"
+    topic="$(arg tof_topic)"
+    update_rate="$(arg tof_rate)"
+    visualize="true"
+    show_visual="true"/>
+
+  <!-- IR LEFT -->
+  <xacro:ir_sensor
+    name="ir_left"
+    parent="base_link"
+    xyz="0.16 0.07 0.14"
+    rpy="0 0 0.35"
+    topic="$(arg ir_left_topic)"
+    update_rate="$(arg ir_rate)"
+    visualize="true"
+    show_visual="true"/>
+
+  <!-- IR RIGHT -->
+  <xacro:ir_sensor
+    name="ir_right"
+    parent="base_link"
+    xyz="0.16 -0.22 0.14"
+    rpy="0 0 -0.35"
+    topic="$(arg ir_right_topic)"
+    update_rate="$(arg ir_rate)"
+    visualize="true"
+    show_visual="true"/>
+
+  <!-- ================= ROS2 CONTROL ================= -->
+  <xacro:toys_collector_ros2_control use_gazebo="$(arg use_gazebo)"/>
+
+  <!-- ================= GZ ROS2 CONTROL PLUGIN ================= -->
+  <xacro:load_gz_ros2_control use_gazebo="$(arg use_gazebo)"/>
+
+</robot>

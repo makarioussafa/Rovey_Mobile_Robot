@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="imu_sensor" params="
+    parent:=base_link
+    frame_id:=imu_link
+    xyz:='0 0 0.12'
+    rpy:='0 0 0'
+    topic:='/imu'
+    update_rate:=15">
+
+    <!-- IMU LINK -->
+    <link name="${frame_id}">
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.04 0.04 0.02"/>
+        </geometry>
+        <material name="imu_black">
+          <color rgba="0.1 0.1 0.1 1"/>
+        </material>
+      </visual>
+
+    </link>
+
+    <!-- FIXED JOINT TO BASE -->
+    <joint name="${frame_id}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${frame_id}"/>
+      <origin xyz="${xyz}" rpy="${rpy}"/>
+    </joint>
+
+    <!-- GAZEBO IMU SENSOR -->
+    <gazebo reference="${frame_id}">
+      <sensor name="imu_sensor" type="imu">
+
+        <always_on>true</always_on>
+        <update_rate>${update_rate}</update_rate>
+        <visualize>false</visualize>
+
+        <!-- Gazebo transport topic -->
+        <topic>${topic}</topic>
+
+        <!-- Important for Gazebo Sim -->
+        <gz_frame_id>${frame_id}</gz_frame_id>
+      </sensor>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

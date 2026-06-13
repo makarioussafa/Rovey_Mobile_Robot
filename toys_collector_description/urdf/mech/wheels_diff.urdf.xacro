@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find toys_collector_description)/urdf/mech/single_wheel.urdf.xacro"/>
+
+  <xacro:macro name="wheels_diff">
+
+    <!-- RIGHT wheels: axis_sign = 1 -->
+    <xacro:single_wheel name="front_right_wheel"
+                        x="0.080345" y="-0.21435" z="0.093709"
+                        r="-1.5708" p="-1.0777" yaw="0"
+                        axis_sign="1"/>
+
+    <xacro:single_wheel name="rear_right_wheel"
+                        x="-0.11916" y="-0.21435" z="0.093709"
+                        r="-1.5708" p="-1.5228" yaw="0"
+                        axis_sign="1"/>
+
+    <!-- LEFT wheels: axis_sign =  -1 -->
+    <xacro:single_wheel name="front_left_wheel"
+                        x="0.080345" y="0.05965" z="0.093709"
+                        r="1.5708" p="-0.47544" yaw="0"
+                        axis_sign="-1"/>
+
+    <xacro:single_wheel name="rear_left_wheel"
+                        x="-0.11916" y="0.05965" z="0.093709"
+                        r="1.5708" p="0.42527" yaw="0"
+                        axis_sign="-1"/>
+
+  </xacro:macro>
+
+</robot>

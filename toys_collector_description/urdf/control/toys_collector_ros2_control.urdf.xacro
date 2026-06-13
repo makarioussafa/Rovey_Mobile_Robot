@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- 
+    ros2_control definition for:
+    - 4 diff drive wheels (velocity control)
+    - 2 arm joints (position control)
+    - 2 gripper joints (position control)
+  -->
+
+  <xacro:macro name="toys_collector_ros2_control" params="use_gazebo">
+
+    <ros2_control name="RobotSystem" type="system">
+
+      <!-- ================= HARDWARE ================= -->
+      <hardware>
+        <xacro:if value="${use_gazebo}">
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        </xacro:if>
+      </hardware>
+
+      <!-- ================= DIFF DRIVE WHEELS ================= -->
+
+      <joint name="front_left_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="rear_left_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="front_right_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="rear_right_wheel_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- ================= ARM MECHANISM ================= -->
+
+      <!-- Revolute: move arm a bit to the right -->
+      <joint name="link_1_of_mechanism_joint">
+        <command_interface name="position"/>
+        <state_interface name="position">
+          <param name="initial_value">0.365</param>
+        </state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- Prismatic: move mechanism upward / away -->
+      <joint name="link_2_of_mechanism_joint">
+        <command_interface name="position"/>
+        <state_interface name="position">
+          <param name="initial_value">0.028</param>
+        </state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- ================= GRIPPER ================= -->
+
+      <joint name="right_grip_joint">
+        <command_interface name="position"/>
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <joint name="left_grip_joint">
+        <command_interface name="position"/>
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="mechanism">
+
+    <!-- ================= LINK 1 ================= -->
+    <link name="link_1_of_mechanism">
+      <inertial>
+        <origin xyz="0.049931 -0.11888 -0.0024096"/>
+        <mass value="0.09011"/>
+        <inertia ixx="4.3389E-05"
+                 ixy="1.3931E-06"
+                 ixz="1.0211E-06"
+                 iyy="3.5823E-05"
+                 iyz="7.5863E-08"
+                 izz="6.0843E-05"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/link_1_of_mechanism.STL"/>
+        </geometry>
+        <material name="mechanism_orange">
+          <color rgba="1 0.5 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/link_1_of_mechanism.STL"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="link_1_of_mechanism_joint" type="revolute">
+      <origin xyz="0.10427 -0.16142 0.10762"
+              rpy="-1.5708 -0.081813 -0.52251"/>
+      <parent link="base_link"/>
+      <child link="link_1_of_mechanism"/>
+      <axis xyz="0.081722 -0.99666 0"/>
+      <limit lower="-1.57"
+             upper="1.57"
+             effort="5"
+             velocity="1.0"/>
+    </joint>
+
+    <!-- ================= LINK 2 ================= -->
+    <link name="link_2_of_mechanism">
+      <inertial>
+        <origin xyz="0.30989 -0.021891 -0.23682"/>
+        <mass value="0.049563"/>
+        <inertia ixx="7.053E-06"
+                 ixy="-1.0563E-06"
+                 ixz="6.091E-07"
+                 iyy="1.8412E-05"
+                 iyz="6.7925E-08"
+                 izz="1.6883E-05"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/link_2_of_mechanism.STL"/>
+        </geometry>
+        <material name="mechanism_orange">
+          <color rgba="1 0.5 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/link_2_of_mechanism.STL"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="link_2_of_mechanism_joint" type="prismatic">
+      <origin xyz="-0.16739 -0.077065 0.23317"
+              rpy="0.055651 0.0046559 -0.0032665"/>
+      <parent link="link_1_of_mechanism"/>
+      <child link="link_2_of_mechanism"/>
+      <axis xyz="0.084976 -0.99482 0.055817"/>
+      <limit lower="-0.076623"
+             upper="0.028377"
+             effort="5"
+             velocity="1.0"/>
+    </joint>
+
+    <!-- ================= RIGHT GRIP ================= -->
+    <link name="right_grip">
+      <inertial>
+        <origin xyz="0.0042729 -0.0089347 -0.0046545"/>
+        <mass value="0.0047071"/>
+        <inertia ixx="8.5564E-07"
+                 ixy="3.2956E-07"
+                 ixz="2.7471E-08"
+                 iyy="2.8861E-07"
+                 iyz="-5.7439E-08"
+                 izz="1.0825E-06"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/right_grip.STL"/>
+        </geometry>
+        <material name="mechanism_orange">
+          <color rgba="1 0.5 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/right_grip.STL"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="right_grip_joint" type="revolute">
+      <origin xyz="0.35072 0.0043946 -0.24839"
+              rpy="-0.28446 1.5075 2.9384"/>
+      <parent link="link_2_of_mechanism"/>
+      <child link="right_grip"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.57"
+             upper="1.57"
+             effort="5"
+             velocity="1.0"/>
+    </joint>
+
+    <!-- ================= LEFT GRIP ================= -->
+    <link name="left_grip">
+      <inertial>
+        <origin xyz="0.0041764 -0.014217 0.0045005"/>
+        <mass value="0.0030837"/>
+        <inertia ixx="6.7656E-07"
+                 ixy="1.6529E-07"
+                 ixz="-3.6421E-11"
+                 iyy="1.2128E-07"
+                 iyz="8.5927E-10"
+                 izz="7.852E-07"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/left_grip.STL"/>
+        </geometry>
+        <material name="mechanism_orange">
+          <color rgba="1 0.5 0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/left_grip.STL"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="left_grip_joint" type="revolute">
+      <origin xyz="0.3528 0.0056875 -0.22851"
+              rpy="2.4806 -1.4938 0.74425"/>
+      <parent link="link_2_of_mechanism"/>
+      <child link="left_grip"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.57"
+             upper="1.57"
+             effort="5"
+             velocity="1.0"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

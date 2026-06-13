@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- 
+    Gazebo Sim plugin loader for Toys Collector
+    Connects gz sim with ros2_control
+  -->
+
+  <xacro:macro name="load_gz_ros2_control" params="use_gazebo">
+
+    <xacro:if value="${use_gazebo}">
+
+      <gazebo>
+        <plugin
+          filename="gz_ros2_control-system"
+          name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+
+          <!-- Path to controllers YAML -->
+          <parameters>
+            $(find toys_collector_description)/config/ros2_controllers.yaml
+          </parameters>
+
+          <!-- Required remap -->
+          <ros>
+            <remapping>
+              /controller_manager/robot_description:=/robot_description
+            </remapping>
+          </ros>
+
+        </plugin>
+      </gazebo>
+
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>

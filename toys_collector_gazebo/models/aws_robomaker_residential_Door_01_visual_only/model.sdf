@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="aws_robomaker_residential_Door_01_visual_only">
+    <static>1</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://aws_robomaker_residential_Door_01/meshes/aws_Door_01_visual.DAE</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

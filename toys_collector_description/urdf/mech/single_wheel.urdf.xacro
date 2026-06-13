@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  
+  <xacro:macro name="single_wheel" params="name x y z r p yaw axis_sign">
+
+    <link name="${name}">
+
+      <inertial>
+        <origin xyz="0 0 -0.021005" rpy="0 0 0"/>
+        <mass value="0.29696"/>
+        <inertia ixx="0.00021159"
+                 ixy="0"
+                 ixz="0"
+                 iyy="0.00021159"
+                 iyz="0"
+                 izz="0.00033585"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/${name}.STL"/>
+        </geometry>
+
+        <!-- black wheels -->
+        <material name="wheel_black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/${name}.STL"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+    <joint name="${name}_joint" type="continuous">
+      <origin xyz="${x} ${y} ${z}" rpy="${r} ${p} ${yaw}"/>
+      <parent link="base_link"/>
+      <child link="${name}"/>
+      <axis xyz="0 0 ${axis_sign}"/>
+    </joint>
+
+  </xacro:macro>
+
+</robot>

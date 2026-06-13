@@ -1,0 +1,161 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 70
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+        - /RobotModel1
+        - /TF1
+      Splitter Ratio: 0.5
+    Tree Height: 480
+
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+
+
+Visualization Manager:
+  Class: ""
+
+  Displays:
+
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160;160;164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+
+    - Alpha: 0.8
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: true
+      Description Source: Topic
+      Description Topic:
+        Value: /robot_description
+      Enabled: true
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Visual Enabled: true
+
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Marker Scale: 0.05
+      Name: TF
+      Show Arrows: false
+      Show Axes: false
+      Show Names: false
+
+    - Class: rviz_default_plugins/Odometry
+      Name: Odometry
+      Enabled: false
+      Topic: /diff_drive_controller/odom
+      Shape: Arrow
+      Keep: 1
+
+    - Class: rviz_default_plugins/LaserScan
+      Name: IR Left
+      Enabled: true
+      Topic: /ir_left_scan
+      Queue Size: 200
+      Size (Pixels): 3
+      Style: Points
+
+    - Class: rviz_default_plugins/LaserScan
+      Name: IR Right
+      Enabled: true
+      Topic: /ir_right_scan
+      Queue Size: 200
+      Size (Pixels): 3
+      Style: Points
+
+    - Class: rviz_default_plugins/LaserScan
+      Name: ToF
+      Enabled: true
+      Topic: /tof_scan
+      Queue Size: 200
+      Size (Pixels): 3
+      Style: Points
+
+    - Class: rviz_imu_plugin/Imu
+      Name: IMU
+      Enabled: false
+      Topic: /imu
+
+
+  Enabled: true
+
+  Global Options:
+    Background Color: 48;48;48
+    Fixed Frame: odom
+    Frame Rate: 30
+
+
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+
+
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+
+
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 2.4
+
+      Focal Point:
+        X: 0
+        Y: 0
+        Z: 0
+
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05
+
+      Near Clip Distance: 0.01
+
+      Pitch: 0.5
+      Yaw: 5.2
+
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+
+    Saved: ~
+
+
+Window Geometry:
+  Displays:
+    collapsed: false
+
+  Height: 1100
+
+  Hide Left Dock: false
+  Hide Right Dock: false
+
+  Views:
+    collapsed: false
+
+  Width: 1500

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="base">
+
+    <link name="base_link">
+
+      <inertial>
+        <origin xyz="-0.0574812381162686 -0.0813755070829083 0.188982437129691" rpy="0 0 0"/>
+        <mass value="1.40600545561116"/>
+        <inertia ixx="0.0105527752130665"
+                 ixy="-0.000287569208829689"
+                 ixz="-7.58277687365553E-05"
+                 iyy="0.010147206971854"
+                 iyz="4.42272291957263E-05"
+                 izz="0.017172447663542"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/base_link.STL"/>
+        </geometry>
+
+        <!--  Gray color for base -->
+        <material name="base_gray">
+          <color rgba="0.5 0.5 0.5 1"/>
+        </material>
+
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://toys_collector_description/meshes/base_link.STL"/>
+        </geometry>
+      </collision>
+
+    </link>
+
+  </xacro:macro>
+
+</robot>
